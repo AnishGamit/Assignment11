@@ -55,7 +55,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Dw-cL-wLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3086.9565217391305" y="-6.0267857142857144"/>
+            <point key="canvasLocation" x="3154" y="-8"/>
+        </scene>
+        <!--Stud Coursewise-->
+        <scene sceneID="cj4-do-SLo">
+            <objects>
+                <viewController id="Uwb-AP-wdX" customClass="StudCoursewise" customModule="Assignment11" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vwy-66-tbM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fcb-ar-gbG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="54J-xp-3Fo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g00-et-62x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4626.0869565217399" y="-8.0357142857142847"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xka-eW-cGW">
@@ -92,6 +108,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbc-yk-UeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1478.2608695652175" y="4.6875"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vmh-NW-kv8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Eg-SC-PEc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6tp-Yu-QZn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Uwb-AP-wdX" kind="relationship" relationship="rootViewController" id="pGp-pq-gkj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6MY-2F-Ffs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3883" y="5"/>
         </scene>
     </scenes>
 </document>

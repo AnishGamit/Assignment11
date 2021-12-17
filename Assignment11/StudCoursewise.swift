@@ -1,5 +1,5 @@
 //
-//  AdminHome.swift
+//  StudCoursewise.swift
 //  Assignment11
 //
 //  Created by DCS on 17/12/21.
@@ -8,9 +8,8 @@
 
 import UIKit
 
-class AdminHome: UIViewController {
-    
-    
+class StudCoursewise: UIViewController {
+
     private let myTable = UITableView()
     private let toolBar:UIToolbar = {
         let toolBar = UIToolbar()
@@ -22,44 +21,14 @@ class AdminHome: UIViewController {
         return toolBar
     }()
     private var notes = [Student]()
-    let btnLogout:UIButton = {
-        let btn = UIButton()
-        btn.setTitle("LogOut", for: .normal)
-        btn.addTarget(self, action: #selector(logoutclick), for: .touchUpInside)
-        btn.tintColor = .white
-        btn.backgroundColor = .blue
-        btn.layer.cornerRadius = 6
-        return btn
-    }()
-    
-    @objc func logoutclick(){
-        UserDefaults.standard.setValue(nil, forKey: "uname")
-        self.dismiss(animated: true)
-        let sc = Login()
-        navigationController?.pushViewController(sc, animated: true)
-    }
-    private let btnviewcourse:UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Course Wise Student", for: .normal)
-        btn.addTarget(self, action: #selector(btnclass), for: .touchUpInside)
-        btn.tintColor = .white
-        btn.backgroundColor = .blue
-        btn.layer.cornerRadius = 6
-        return btn
-    }()
-    @objc func btnclass(){
-        self.dismiss(animated: true)
-        let sc = StudCoursewise()
-        navigationController?.pushViewController(sc, animated: true)
-    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(myTable)
         view.addSubview(toolBar)
-        view.addSubview(btnLogout)
-        view.addSubview(btnviewcourse)
+       
         myTable.dataSource = self
         myTable.delegate = self
         myTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -68,15 +37,14 @@ class AdminHome: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        btnLogout.frame = CGRect(x: 10, y: 60, width: 80, height: 30)
-        btnviewcourse.frame = CGRect(x: btnLogout.right + 5, y: 60, width: view.width - 20, height: 30)
+        
         toolBar.frame = CGRect(x: 0, y: 20, width: view.width, height: 40)
-        myTable.frame = CGRect(x: 0,y: btnLogout.bottom + 20, width: view.frame.size.width,
+        myTable.frame = CGRect(x: 0,y: toolBar.bottom + 20, width: view.frame.size.width,
                                height: view.frame.size.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom)
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        notes = SQLiteHandler.shared.fetch()
+        notes = SQLiteHandler.shared.fetchCorseWise(course: "BCA")
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -93,7 +61,7 @@ class AdminHome: UIViewController {
     }
     
 }
-extension AdminHome: UITableViewDataSource, UITableViewDelegate {
+extension StudCoursewise: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -137,6 +137,33 @@ class SQLiteHandler {
         
         if sqlite3_prepare_v2(db, fetchstr, -1, &fetchst, nil) == SQLITE_OK {
             
+            
+            while sqlite3_step(fetchst) == SQLITE_ROW {
+                let id = Int(sqlite3_column_int(fetchst, 0))
+                let name =  String(cString: sqlite3_column_text(fetchst, 1))
+                let email = String(cString: sqlite3_column_text(fetchst, 2))
+                let gen = String(cString: sqlite3_column_text(fetchst, 3))
+                let pwd = String(cString: sqlite3_column_text(fetchst, 4))
+                let course = String(cString: sqlite3_column_text(fetchst, 5))
+                stud.append(Student(spid: id, sname:name,email: email,gen: gen,pwd:pwd, course: course))
+            }
+            
+        } else {
+            print("fetch statement could not be prepared")
+            
+        }
+        sqlite3_finalize(fetchst)
+        return stud
+    }
+    func fetchCorseWise(course:String) -> [Student] {
+        let fetchstr = "SELECT * FROM student where course = ?;"
+        var stud = [Student]()
+        var fetchst:OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(db, fetchstr, -1, &fetchst, nil) == SQLITE_OK {
+            
+            sqlite3_bind_text(fetchst, 5, course, -1, nil)
+            
             while sqlite3_step(fetchst) == SQLITE_ROW {
                 let id = Int(sqlite3_column_int(fetchst, 0))
                 let name =  String(cString: sqlite3_column_text(fetchst, 1))

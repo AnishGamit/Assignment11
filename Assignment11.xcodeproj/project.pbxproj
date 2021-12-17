@@ -18,6 +18,8 @@
 		0B13515F276C98A200B0D8F4 /* AdminHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13515E276C98A200B0D8F4 /* AdminHome.swift */; };
 		0B135161276C99ED00B0D8F4 /* StudentRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B135160276C99ED00B0D8F4 /* StudentRegister.swift */; };
 		0B135163276CA4A200B0D8F4 /* StudLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B135162276CA4A200B0D8F4 /* StudLogin.swift */; };
+		0B13518E276CB68400B0D8F4 /* StudCoursewise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13518D276CB68400B0D8F4 /* StudCoursewise.swift */; };
+		0B135190276CBBCD00B0D8F4 /* NoticeBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13518F276CBBCD00B0D8F4 /* NoticeBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		0B13515E276C98A200B0D8F4 /* AdminHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHome.swift; sourceTree = "<group>"; };
 		0B135160276C99ED00B0D8F4 /* StudentRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRegister.swift; sourceTree = "<group>"; };
 		0B135162276CA4A200B0D8F4 /* StudLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudLogin.swift; sourceTree = "<group>"; };
+		0B13518D276CB68400B0D8F4 /* StudCoursewise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudCoursewise.swift; sourceTree = "<group>"; };
+		0B13518F276CBBCD00B0D8F4 /* NoticeBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				0B13513B276C93C600B0D8F4 /* SQLiteHelper.swift */,
 				0B135160276C99ED00B0D8F4 /* StudentRegister.swift */,
 				0B135162276CA4A200B0D8F4 /* StudLogin.swift */,
+				0B13518D276CB68400B0D8F4 /* StudCoursewise.swift */,
+				0B13518F276CBBCD00B0D8F4 /* NoticeBoard.swift */,
 			);
 			path = Assignment11;
 			sourceTree = "<group>";
@@ -153,9 +159,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B13518E276CB68400B0D8F4 /* StudCoursewise.swift in Sources */,
 				0B13515F276C98A200B0D8F4 /* AdminHome.swift in Sources */,
 				0B135161276C99ED00B0D8F4 /* StudentRegister.swift in Sources */,
 				0B13513C276C93C600B0D8F4 /* SQLiteHelper.swift in Sources */,
+				0B135190276CBBCD00B0D8F4 /* NoticeBoard.swift in Sources */,
 				0B135163276CA4A200B0D8F4 /* StudLogin.swift in Sources */,
 				0B135124276C91C700B0D8F4 /* AppDelegate.swift in Sources */,
 				0B135136276C91E300B0D8F4 /* Login.swift in Sources */,
