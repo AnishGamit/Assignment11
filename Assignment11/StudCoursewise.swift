@@ -44,7 +44,7 @@ class StudCoursewise: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        notes = SQLiteHandler.shared.fetchCorseWise(course: "BCA")
+        //notes = SQLiteHandler.shared.fetchCorseWis
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
