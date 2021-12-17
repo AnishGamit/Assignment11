@@ -49,8 +49,11 @@ class AdminHome: UIViewController {
     }()
     @objc func btnclass(){
         self.dismiss(animated: true)
-        let sc = StudCoursewise()
-        navigationController?.pushViewController(sc, animated: true)
+        //let sc = StudCoursewise()
+        //navigationController?.pushViewController(sc, animated: true)
+        let course = "BCA"
+        
+        //notes = SQLiteHandler.shared.fetchCorseWise(e: <#T##Student#>, completion: <#T##((Bool) -> Void)##((Bool) -> Void)##(Bool) -> Void#>)
     }
     
     override func viewDidLoad() {

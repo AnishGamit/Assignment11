@@ -155,15 +155,14 @@ class SQLiteHandler {
         sqlite3_finalize(fetchst)
         return stud
     }
-    func fetchCorseWise(course:String) -> [Student] {
+    func fetchCorseWise(e:Student, completion: @escaping ((Bool) -> Void)) -> [Student] {
         let fetchstr = "SELECT * FROM student where course = ?;"
         var stud = [Student]()
         var fetchst:OpaquePointer? = nil
         
         if sqlite3_prepare_v2(db, fetchstr, -1, &fetchst, nil) == SQLITE_OK {
-            
-            sqlite3_bind_text(fetchst, 5, course, -1, nil)
-            
+            sqlite3_bind_text(fetchst, 5, (e.course as NSString).utf8String, -1, nil)
+          
             while sqlite3_step(fetchst) == SQLITE_ROW {
                 let id = Int(sqlite3_column_int(fetchst, 0))
                 let name =  String(cString: sqlite3_column_text(fetchst, 1))
