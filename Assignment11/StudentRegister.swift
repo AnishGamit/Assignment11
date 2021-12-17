@@ -85,7 +85,7 @@ class StudentRegister: UIViewController {
         sg.insertSegment(withTitle: "BCA", at: 1, animated: true)
         sg.insertSegment(withTitle: "BBA", at: 2, animated: true)
         sg.insertSegment(withTitle: "BSc", at: 3, animated: true)
-        sg.insertSegment(withTitle: "CA", at: 4, animated: true)
+        sg.insertSegment(withTitle: "MCA", at: 4, animated: true)
         return sg
     }()
     private let savebutton:UIButton = {

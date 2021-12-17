@@ -15,12 +15,14 @@ class AdminHome: UIViewController {
     private let toolBar:UIToolbar = {
         let toolBar = UIToolbar()
         let item1 = UIBarButtonItem(barButtonSystemItem: .add, target:self, action: #selector(add_note))
+        //let item2 = UIBarButtonItem(barButtonSystemItem: .action, target:self, action: #selector(coursewisestud))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
         toolBar.items = [space, item1,space]
         return toolBar
     }()
     private var notes = [Student]()
-    private let btnLogout:UIButton = {
+    let btnLogout:UIButton = {
         let btn = UIButton()
         btn.setTitle("LogOut", for: .normal)
         btn.addTarget(self, action: #selector(logoutclick), for: .touchUpInside)
@@ -29,8 +31,23 @@ class AdminHome: UIViewController {
         btn.layer.cornerRadius = 6
         return btn
     }()
+    
     @objc func logoutclick(){
         UserDefaults.standard.setValue(nil, forKey: "uname")
+        self.dismiss(animated: true)
+        let sc = Login()
+        navigationController?.pushViewController(sc, animated: true)
+    }
+    private let btnviewcourse:UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Course Wise Student", for: .normal)
+        btn.addTarget(self, action: #selector(btnclass), for: .touchUpInside)
+        btn.tintColor = .white
+        btn.backgroundColor = .blue
+        btn.layer.cornerRadius = 6
+        return btn
+    }()
+    @objc func btnclass(){
         self.dismiss(animated: true)
         let sc = Login()
         navigationController?.pushViewController(sc, animated: true)
@@ -42,6 +59,7 @@ class AdminHome: UIViewController {
         view.addSubview(myTable)
         view.addSubview(toolBar)
         view.addSubview(btnLogout)
+        view.addSubview(btnviewcourse)
         myTable.dataSource = self
         myTable.delegate = self
         myTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -50,9 +68,10 @@ class AdminHome: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        btnLogout.frame = CGRect(x: 10, y: 25, width: 80, height: 30)
-        toolBar.frame = CGRect(x: 0, y: 20, width: view.width, height: 40)
-        myTable.frame = CGRect(x: 0,y: toolBar.bottom + 10, width: view.frame.size.width,
+        btnLogout.frame = CGRect(x: 10, y: 20, width: 80, height: 30)
+        btnviewcourse.frame = CGRect(x: btnLogout.right + 5, y: 20, width: view.width, height: 30)
+        toolBar.frame = CGRect(x: 0, y: 50, width: view.width, height: 40)
+        myTable.frame = CGRect(x: 0,y: toolBar.bottom + 30, width: view.frame.size.width,
                                height: view.frame.size.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom)
         
     }
@@ -68,6 +87,9 @@ class AdminHome: UIViewController {
     {
         let vc = StudentRegister()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func coursewisestud(){
+        
     }
     
 }
