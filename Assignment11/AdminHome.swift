@@ -82,6 +82,7 @@ class AdminHome: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         notes = SQLiteHandler.shared.fetch()
+        getData()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -131,6 +132,20 @@ extension AdminHome: UITableViewDataSource, UITableViewDelegate {
                 print("not Deleted in VC")
             }
         }
+    }
+    
+    func getData() {
+        let tot = notes.count
+        for i in 0...tot - 1{
+            
+            let id = notes[i].spid
+            let course = notes[i].course
+            if course == "BCA" {
+                print(course)
+            }
+            print("id: \(id)")
+        }
+        
     }
     
 }
