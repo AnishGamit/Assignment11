@@ -21,7 +21,9 @@ class AdminHome: UIViewController {
         toolBar.items = [space, item1,space]
         return toolBar
     }()
+    
     private var notes = [Student]()
+    
     let btnLogout:UIButton = {
         let btn = UIButton()
         btn.setTitle("LogOut", for: .normal)
@@ -51,7 +53,7 @@ class AdminHome: UIViewController {
         self.dismiss(animated: true)
         //let sc = StudCoursewise()
         //navigationController?.pushViewController(sc, animated: true)
-        let course = "BCA"
+        //let course = "BCA"
         
         //notes = SQLiteHandler.shared.fetchCorseWise(e: <#T##Student#>, completion: <#T##((Bool) -> Void)##((Bool) -> Void)##(Bool) -> Void#>)
     }
@@ -108,7 +110,7 @@ extension AdminHome: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let stud = notes[indexPath.row]
-        cell.textLabel?.text = "\(stud.sname) \t | \t \(stud.course) \t | \t \(stud.gen)  \t | \t \(stud.email)"
+        cell.textLabel?.text = "\(stud.sname) \t | \t \(stud.course) \t | \t \(stud.gen)  \t | \t \(stud.email) | \t \t \(stud.phone)"
         return cell
         
     }

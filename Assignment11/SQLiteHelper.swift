@@ -32,28 +32,30 @@ class SQLiteHandler {
     }
     private func createtable(){
         let createTableString = """
-            CREATE TABLE IF NOT EXISTS student(
+            CREATE TABLE IF NOT EXISTS Stud(
                 spid INTEGER PRIMARY KEY,
                 sname TEXT,
                 email TEXT,
                 gender TEXT,
                 password TEXT,
-                course TEXT);
+                course TEXT,
+                phone TEXT);
         """
         var creatTableStatement:OpaquePointer? = nil
         if sqlite3_prepare_v2(db, createTableString, -1, &creatTableStatement, nil) == SQLITE_OK{
             if sqlite3_step(creatTableStatement)==SQLITE_DONE {
-                print("student created")
+                print("Stud created")
             }else{
-                print("student no created")
+                print("Stud no created")
             }
         }else{
-            print("student table not prepared")
+            print("Stud table not prepared")
         }
         sqlite3_finalize(creatTableStatement)
     }
+    
     func delete(for id:Int, completion: @escaping ((Bool) -> Void)) {
-        let deletestr = "delete from student where spid=?;"
+        let deletestr = "delete from Stud where spid=?;"
         
         var deletest:OpaquePointer? = nil
         
@@ -77,7 +79,7 @@ class SQLiteHandler {
     }
     
     func insert(e:Student, completion: @escaping ((Bool) -> Void)) {
-        let insertstr = "INSERT INTO student (spid,sname,email,gender,password,course) VALUES (?, ?, ? , ?, ?, ?);"
+        let insertstr = "INSERT INTO Stud (spid,sname,email,gender,password,course,phone) VALUES (?, ?, ? , ?, ?, ?,?);"
         
         var insertst:OpaquePointer? = nil
         
@@ -89,6 +91,7 @@ class SQLiteHandler {
             sqlite3_bind_text(insertst, 4, (e.gen as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertst, 5, (e.pwd as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertst, 6, (e.course as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertst, 7, (e.phone as NSString).utf8String, -1, nil)
             if sqlite3_step(insertst) == SQLITE_DONE {
                 print("inserted")
                 completion(true)
@@ -104,7 +107,7 @@ class SQLiteHandler {
         sqlite3_finalize(insertst)
     }
     func update(e:Student, completion: @escaping ((Bool) -> Void)) {
-        let updatestr = "UPDATE student SET sname = ?, email = ?, gender = ?, password = ?, course = ? WHERE spid = ?;"
+        let updatestr = "UPDATE Stud SET sname = ?, email = ?, gender = ?, course = ?, phone = ? WHERE spid = ?;"
         
         var updatest:OpaquePointer? = nil
         
@@ -113,8 +116,9 @@ class SQLiteHandler {
             sqlite3_bind_text(updatest, 1, (e.sname as NSString).utf8String, -1, nil)
             sqlite3_bind_text(updatest, 2, (e.email as NSString).utf8String, -1, nil)
             sqlite3_bind_text(updatest, 3, (e.gen as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(updatest, 4, (e.pwd as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(updatest, 5, (e.course as NSString).utf8String, -1, nil)
+            //sqlite3_bind_text(updatest, 4, (e.pwd as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(updatest, 4, (e.course as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(updatest, 5, (e.phone as NSString).utf8String, -1, nil)
             sqlite3_bind_int(updatest,  6, Int32(e.spid))
             if sqlite3_step(updatest) == SQLITE_DONE {
                 print("updated")
@@ -131,7 +135,7 @@ class SQLiteHandler {
         sqlite3_finalize(updatest)
     }
     func fetch() -> [Student] {
-        let fetchstr = "SELECT * FROM student;"
+        let fetchstr = "SELECT * FROM Stud;"
         var stud = [Student]()
         var fetchst:OpaquePointer? = nil
         
@@ -145,7 +149,8 @@ class SQLiteHandler {
                 let gen = String(cString: sqlite3_column_text(fetchst, 3))
                 let pwd = String(cString: sqlite3_column_text(fetchst, 4))
                 let course = String(cString: sqlite3_column_text(fetchst, 5))
-                stud.append(Student(spid: id, sname:name,email: email,gen: gen,pwd:pwd, course: course))
+                let phno = String(cString: sqlite3_column_text(fetchst, 6))
+                stud.append(Student(spid: id, sname:name,email: email,gen: gen,pwd:pwd, course: course, phone: phno))
             }
             
         } else {
@@ -155,7 +160,7 @@ class SQLiteHandler {
         sqlite3_finalize(fetchst)
         return stud
     }
-    func fetchCorseWise(e:Student, completion: @escaping ((Bool) -> Void)) -> [Student] {
+    /*func fetchCorseWise(e:Student, completion: @escaping ((Bool) -> Void)) -> [Student] {
         let fetchstr = "SELECT * FROM student where course = ?;"
         var stud = [Student]()
         var fetchst:OpaquePointer? = nil
@@ -179,5 +184,5 @@ class SQLiteHandler {
         }
         sqlite3_finalize(fetchst)
         return stud
-    }
+    }*/
 }

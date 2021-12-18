@@ -20,6 +20,7 @@ class StudCoursewise: UIViewController {
         toolBar.items = [space, item1,space]
         return toolBar
     }()
+    
     private var notes = [Student]()
    
     

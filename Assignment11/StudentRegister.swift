@@ -59,15 +59,15 @@ class StudentRegister: UIViewController {
         textfield.rightViewMode = .always
         return textfield
     }()
-    private let passtextfield:UITextField = {
+    private let txtPhone:UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "Enter Password"
-        let img = UIImageView(frame: CGRect(x: 20, y: 50, width: 40, height: 20))
-        img.contentMode = .scaleAspectFit
+        textfield.placeholder = "Enter Phone Number"
+        //let img = UIImageView(frame: CGRect(x: 20, y: 50, width: 40, height: 20))
+        //img.contentMode = .scaleAspectFit
        // img.image = #imageLiteral(resourceName: "key")
         textfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textfield.frame.height))
         textfield.leftViewMode = .always
-        textfield.rightView = img
+        //textfield.rightView = img
         textfield.rightViewMode = .always
         textfield.layer.borderWidth = 1
         return textfield
@@ -76,7 +76,6 @@ class StudentRegister: UIViewController {
         let sg = UISegmentedControl()
         sg.insertSegment(withTitle: "Male", at: 0, animated: true)
         sg.insertSegment(withTitle: "Female", at: 1, animated: true)
-        sg.insertSegment(withTitle: "Other", at: 2, animated: true)
         return sg
     }()
     private let mysegment1 : UISegmentedControl = {
@@ -108,7 +107,7 @@ class StudentRegister: UIViewController {
         view.addSubview(spidtextfield)
         view.addSubview(nametextfield)
         view.addSubview(emailtextfield)
-        view.addSubview(passtextfield)
+        view.addSubview(txtPhone)
         view.addSubview(mysegment)
         view.addSubview(mysegment1)
         view.addSubview(savebutton)
@@ -117,39 +116,41 @@ class StudentRegister: UIViewController {
             spidtextfield.isEnabled = false
             nametextfield.text = s.sname
             emailtextfield.text = s.email
-            passtextfield.text = s.pwd
+            txtPhone.text = s.phone
             //mysegment.titleForSegment(at: mysegment.selectedSegmentIndex)
             //mysegment1.titleForSegment(at: mysegment1.selectedSegmentIndex)
         }
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        titlelabel.frame = CGRect(x: 10, y: 20, width: view.width-10, height: 100)
+        titlelabel.frame = CGRect(x: 10, y: 30, width: view.width-10, height: 100)
         
         spidtextfield.frame = CGRect(x: 30, y: titlelabel.bottom+20, width: view.width-60, height: 40)
         nametextfield.frame = CGRect(x: 30, y: spidtextfield.bottom + 20, width: view.width-60, height: 40)
         emailtextfield.frame = CGRect(x: 30, y: nametextfield.bottom + 20, width: view.width-60, height: 40)
         mysegment.frame = CGRect(x: 30, y: emailtextfield.bottom+10, width: view.width-60, height: 30)
-        passtextfield.frame = CGRect(x: 30, y: mysegment.bottom+10, width: view.width-60, height: 40)
-        mysegment1.frame = CGRect(x: 30, y: passtextfield.bottom+10, width: view.width-60, height: 30)
+        txtPhone.frame = CGRect(x: 30, y: mysegment.bottom+10, width: view.width-60, height: 40)
+        mysegment1.frame = CGRect(x: 30, y: txtPhone.bottom+10, width: view.width-60, height: 30)
         savebutton.frame = CGRect(x: 30, y: mysegment1.bottom+30, width: view.width-60, height: 40)
     }
 }
 extension StudentRegister{
+    
     @objc private func savenote(){
         let id = spidtextfield.text!
+        let pass = spidtextfield.text!
         let name = nametextfield.text!
         let email = emailtextfield.text!
         let segm = mysegment.titleForSegment(at: mysegment.selectedSegmentIndex)!
-        let pass = passtextfield.text!
+        let phno = txtPhone.text!
         let course = mysegment1.titleForSegment(at: mysegment1.selectedSegmentIndex)!
         if let student = stud {
-            let updstd = Student(spid: student.spid, sname: name, email: email, gen: segm, pwd: pass, course: course)
+            let updstd = Student(spid: student.spid, sname: name, email: email, gen: segm, pwd: pass, course: course, phone: phno)
             print("UPDATE\(updstd)")
             update(Student:updstd)
         }else{
             print("Insert \(id),\(name),\(email),\(String(describing: segm)),\(course)")
-            let insstd = Student(spid: Int(id)!, sname: name, email: email, gen: segm, pwd: pass, course: course)
+            let insstd = Student(spid: Int(id)!, sname: name, email: email, gen: segm, pwd: pass, course: course, phone: phno)
             insert(Student:insstd)
         }
     }
@@ -179,7 +180,7 @@ extension StudentRegister{
         nametextfield.text=""
         emailtextfield.text=""
         mysegment.selectedSegmentIndex = UISegmentedControl.noSegment
-        passtextfield.text=""
+        txtPhone.text=""
         mysegment1.selectedSegmentIndex = UISegmentedControl.noSegment
     }
 }
